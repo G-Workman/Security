@@ -1,0 +1,10 @@
+%ip - contains the next instruction
+
+
+%rax
+the first return register
+%rbp
+the base pointer that keeps track of the base of the stack
+%rsp
+the stack pointer that points to the top of the stack
+
