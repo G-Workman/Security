@@ -1,0 +1,96 @@
+LINUX
+
+cat /etc/passwd
+username:hashed password:uid:guid:comment:home directory:default shell
+
+cat /etc/shadow
+contains encrypted user passwords
+
+who
+who's currently logged on
+
+whoami
+shows current user
+
+groups
+shows groups the the current user is in
+
+id
+shows uid gid and groups of the user that ran the command
+
+ps  -elf
+process listing; everything, long-listing, format
+
+pstree
+process listing; tree format
+
+sudo lsof
+listing of open files
+
+ps -p 1
+shows the type of systemd
+
+systemctl list-units --type service
+show list of units and description
+
+Service --status all service
+chkconfig
+
+WINDOWS - POWERSHELL
+
+net user                           - Displays a list of local users by username
+net user <username>                - Displays properties associated with that username
+net localgroup                     - Displays a list of local groups on the system
+net localgroup <groupName>         - Provides a description of what the local group can do with a list of members in that group
+wmic useraccount get name,sid      - This command displays the Security IDs (SIDs) of all user accounts on the system. If you know the username, use this command: wmic useraccount where name="USER" get sid
+
+get-localuser
+show current user
+
+get-localgroup
+show current user's groups
+
+tasklist /svc 	                                           - Displays services hosted in each process.
+net start 	                                               - Displays a list of services that have been started by their display name
+wmic service list status 	                                 - Displays name and status of services.
+Get-Service \ | Where {$_.Status -eq "Running"} 	         - Powershell method of determining running services. Displays Name and DisplayName.
+get-process | where { $_.ID -lt '1000' }
+
+ipconfig /all               - Display local interface information to include IP address/mask, MAC address, default router/gateway, and DNS settings.
+netstat /anob               - Displays local listenting ports, process-id and binary.
+wmic netuse list full       - Displays: AccessMask, Comment, ConnectionState, ConnectionType, Description, DisplayType, InstallDate, LocalName, Name, Persistent, ProviderName, RemoteName, RemotePath, ResourceType, Status, UserName
+net use                     - NET USE connects a computer to a shared resource or disconnects a computer from a shared resource. When used without options, it lists the computer's connections.
+net view                    - Displays a list of resources being shared on the system. When used without options, it displays a list of computers in the current domain or network.
+arp -a                      - Displays the arp cache on the system.
+route print                 - Displays the system's routing table.
+
+MUTLIPLEXING
+mkdir ~/.ssh
+cd .ssh
+mkdir cm
+cd cm
+
+
+cd .ssh
+ls
+mkdir cm
+cd cm
+ssh -M -S ~/.ssh/cm/gray student@10.50.27.131
+ssh -M -S ~/.ssh/cm/gray -o "ControlPersist=10m" student@10.50.27.131
+ssh -O forward -L 11500:10.100.28.48:80 -S
+ssh -O forward -L 11512:10.100.28.48:80 -S ~/.ssh/cm/gray nla
+ssh -O forward -L 11512:10.100.28.40:80 -S ~/.ssh/cm/gray another
+ssh -O forward -L 11513:10.100.28.40:80 -S ~/.ssh/cm/gray another
+ssh -O cancel -L 11512:10.100.28.48:80 -S ~/.ssh/cm/gray nla
+ssh -O cancel -L 11513:10.100.28.40:80 -S ~/.ssh/cm/gray another
+ssh -O exit -L 11512:10.100.28.48:80 -S ~/.ssh/cm/gray nla
+ssh -O exit -L 11513:10.100.28.40:80 -S ~/.ssh/cm/gray another
+
+ssh -O forward -L2222:192.168.28.111:2222 -S ~/.ssh/cm/gray quad2
+ssh -M -S ~//ssh/cm/T1 comrade@0.0.0.0 -p2222
+
+scp -o "ControlPath=~/.ssh/cm/gray"aa:/home/student/func .
+
+
+
+
