@@ -87,7 +87,7 @@ ssh -O exit -L 11512:10.100.28.48:80 -S ~/.ssh/cm/gray nla
 ssh -O exit -L 11513:10.100.28.40:80 -S ~/.ssh/cm/gray another
 
 ssh -O forward -L2222:192.168.28.111:2222 -S ~/.ssh/cm/gray quad2
-ssh -M -S ~//ssh/cm/T1 comrade@0.0.0.0 -p2222
+ssh -M -S ~/.ssh/cm/T1 comrade@0.0.0.0 -p2222
 
 scp -o "ControlPath=~/.ssh/cm/gray"aa:/home/student/func .
 
