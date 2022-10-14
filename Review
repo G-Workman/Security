@@ -178,3 +178,8 @@ cat /etc/hosts
 find / -type f -perm /4000 -ls 2>dev/null
 					 /2000
 					 /6000
+
+
+if you can 'which gdb' buffer overflow (Lesson 7)
+
+
