@@ -15,3 +15,5 @@ use multi/handler
   set lhost 0.0.0.0
   set lport 5555
   show options
+
+https://sec.cybbh.io/public/security/latest/lessons/lesson-7-exploit_sg.html#_buffer_overflow
